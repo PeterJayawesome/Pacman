@@ -114,35 +114,50 @@
 
 
       document.onkeydown = function(e){
-        if(e.keyCode == 39 && map[pacman.y][pacman.x+1] != 2){
-          pacman.x++;
-          if(map[pacman.y][pacman.x]==1){
-            score += 10;
-            map[pacman.y][pacman.x]=0;
-            document.getElementById('points').innerHTML = score;
+        if(e.keyCode == 39){
+          document.getElementById('pacman').style.transform = "rotate(0deg)";
+          if(map[pacman.y][pacman.x+1] != 2){
+            pacman.x++;
+            if(map[pacman.y][pacman.x]==1){
+              score += 10;
+              map[pacman.y][pacman.x]=0;
+              document.getElementById('points').innerHTML = score;
+            }
           }
         }
-        else if (e.keyCode == 37 && map[pacman.y][pacman.x-1] != 2) {
-          pacman.x--;
-          if(map[pacman.y][pacman.x]==1){
-            score += 10;
-            map[pacman.y][pacman.x]=0;
-            document.getElementById('points').innerHTML = score;
-          }        }
-        else if (e.keyCode == 40 && map[pacman.y+1][pacman.x] != 2) {
-          pacman.y++;
-          if(map[pacman.y][pacman.x]==1){
-            score += 10;
-            map[pacman.y][pacman.x]=0;
-            document.getElementById('points').innerHTML = score;
-          }        }
-        else if (e.keyCode == 38 && map[pacman.y-1][pacman.x] != 2) {
-          pacman.y--;
-          if(map[pacman.y][pacman.x]==1){
-            score += 10;
-            map[pacman.y][pacman.x]=0;
-            document.getElementById('points').innerHTML = score;
-          }        }
+        else if (e.keyCode == 37) {
+          document.getElementById('pacman').style.transform = "rotate(180deg)";
+          if(map[pacman.y][pacman.x-1] != 2){
+            pacman.x--;
+            if(map[pacman.y][pacman.x]==1){
+              score += 10;
+              map[pacman.y][pacman.x]=0;
+              document.getElementById('points').innerHTML = score;
+            }
+          }
+        }
+        else if (e.keyCode == 40) {
+          document.getElementById('pacman').style.transform = "rotate(90deg)";
+          if (map[pacman.y+1][pacman.x] != 2) {
+            pacman.y++;
+            if(map[pacman.y][pacman.x]==1){
+              score += 10;
+              map[pacman.y][pacman.x]=0;
+              document.getElementById('points').innerHTML = score;
+            }
+          }
+        }
+        else if (e.keyCode == 38) {
+          document.getElementById('pacman').style.transform = "rotate(270deg)";
+          if (map[pacman.y-1][pacman.x] != 2) {
+            pacman.y--;
+            if(map[pacman.y][pacman.x]==1){
+              score += 10;
+              map[pacman.y][pacman.x]=0;
+              document.getElementById('points').innerHTML = score;
+            }
+          }
+        }
         // console.log(e.keyCode);
         displayPac();
         displayMap(map);
