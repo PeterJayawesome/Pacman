@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pacman</title>
+    <style media="screen">
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    body{
+      background: black;
+    }
+    #map{
+      display: inline-block;
+    }
+    .row{
+      height: 20px;
+    }
+    .brick{
+      width: 20px;
+      height: 20px;
+      background-color: blue;
+      display: inline-block;
+    }
+    .coin{
+      width: 20px;
+      height: 20px;
+      background-image: url(coin.gif);
+      background-size: cover;
+      display: inline-block;
+    }
+    .empty{
+      width: 20px;
+      height: 20px;
+      /*background-image: url(coin.gif);
+      background-size: cover;*/
+      display: inline-block;
+    }
+    #pacman{
+      width: 20px;
+      height: 20px;
+      background-image: url(pac.gif);
+      background-size: cover;
+      display: inline-block;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    #score{
+      height: 30px;
+      padding: 20px;
+      margin: 20px;
+      width: 50px;
+      vertical-align: top;
+      /*font-size: 24px;*/
+      display: inline-block;
+      border: 3px solid white;
+      color: white;
+      text-align: center;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="map">
+    </div>
+    <div id="pacman">
+    </div>
+    <div id="score">
+      <p>SCORE:</p>
+      <p id='points'>0</p>
+    </div>
+    <script type="text/javascript">
+      var map =[[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+                [2,0,1,1,1,1,1,1,1,2,1,1,1,1,1,2],
+                [2,1,1,1,1,1,1,2,1,2,2,2,2,2,1,2],
+                [2,1,1,2,2,2,2,2,1,2,1,1,1,1,1,2],
+                [2,1,1,1,2,1,1,2,1,2,1,2,2,2,2,2],
+                [2,1,1,1,2,1,1,2,1,2,1,1,1,1,1,2],
+                [2,1,1,1,2,1,1,2,1,2,2,2,2,2,1,2],
+                [2,1,0,0,2,1,1,2,2,2,1,1,1,1,1,2],
+                [2,1,0,0,1,1,1,1,1,1,1,2,1,1,1,2],
+                [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]];
+      function displayMap(arr){
+        var output="";
+        for(var i=0;i<arr.length;i++){
+          output += "<div class='row'>"
+          for (var j = 0; j < arr[i].length; j++) {
+            if(arr[i][j]==2){
+              output += "<div class='brick'></div>"
+            }
+            else if (arr[i][j]==1) {
+              output += "<div class='coin'></div>"
+            }
+            else if(arr[i][j]==0){
+              output += "<div class='empty'></div>"
+            }
+          }
+          output += "</div>"
+        }
+        // console.log(output);
+
+        document.getElementById("map").innerHTML = output;
+      }
+      var pacman = {
+        x:1,
+        y:1
+      }
+      var score = 0;
+      function displayPac(){
+        document.getElementById('pacman').style.top= pacman.y*20+"px";
+        document.getElementById('pacman').style.left= pacman.x*20+"px";
+      }
+
+
+      document.onkeydown = function(e){
+        if(e.keyCode == 39 && map[pacman.y][pacman.x+1] != 2){
+          pacman.x++;
+          if(map[pacman.y][pacman.x]==1){
+            score += 10;
+            map[pacman.y][pacman.x]=0;
+            document.getElementById('points').innerHTML = score;
+          }
+        }
+        else if (e.keyCode == 37 && map[pacman.y][pacman.x-1] != 2) {
+          pacman.x--;
+          if(map[pacman.y][pacman.x]==1){
+            score += 10;
+            map[pacman.y][pacman.x]=0;
+            document.getElementById('points').innerHTML = score;
+          }        }
+        else if (e.keyCode == 40 && map[pacman.y+1][pacman.x] != 2) {
+          pacman.y++;
+          if(map[pacman.y][pacman.x]==1){
+            score += 10;
+            map[pacman.y][pacman.x]=0;
+            document.getElementById('points').innerHTML = score;
+          }        }
+        else if (e.keyCode == 38 && map[pacman.y-1][pacman.x] != 2) {
+          pacman.y--;
+          if(map[pacman.y][pacman.x]==1){
+            score += 10;
+            map[pacman.y][pacman.x]=0;
+            document.getElementById('points').innerHTML = score;
+          }        }
+        // console.log(e.keyCode);
+        displayPac();
+        displayMap(map);
+      }
+      // function displayPac(){
+      //   document.getElementById(pacman).
+      // }
+      displayMap(map);
+      displayPac();
+    </script>
+  </body>
+</html>
