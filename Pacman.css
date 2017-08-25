@@ -1,0 +1,79 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background: black;
+}
+#map{
+  display: inline-block;
+}
+#ghosts{
+  /*width: 500px;
+  height: 300px;*/
+  display: inline-block;
+  position: absolute;
+  left: 0px;
+}
+.row{
+  height: 20px;
+}
+.brick{
+  width: 20px;
+  height: 20px;
+  background-color: blue;
+  display: inline-block;
+}
+.coin{
+  width: 20px;
+  height: 20px;
+  background-image: url(coin.gif);
+  background-size: cover;
+  display: inline-block;
+}
+.empty{
+  width: 20px;
+  height: 20px;
+  /*background-image: url(coin.gif);
+  background-size: cover;*/
+  display: inline-block;
+}
+.cherry{
+  width: 20px;
+  height: 20px;
+  background-image: url(cherry.png);
+  background-size: cover;
+  display: inline-block;
+}
+.ghost{
+  width: 20px;
+  height: 20px;
+  background-image: url(ghost1.gif);
+  background-size: cover;
+  display: inline-block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+#pacman{
+  width: 20px;
+  height: 20px;
+  background-image: url(pac.gif);
+  background-size: cover;
+  display: inline-block;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+#score{
+  height: 60px;
+  padding: 20px;
+  margin: 20px;
+  width: 50px;
+  vertical-align: top;
+  /*font-size: 24px;*/
+  display: inline-block;
+  border: 3px solid white;
+  color: white;
+  text-align: center;
+}
