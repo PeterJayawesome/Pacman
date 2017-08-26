@@ -103,6 +103,7 @@ function moveGhost(){
     if(index == 1){ghost[i].x++;};
     if(index == 2){ghost[i].y++;};
     if(index == 3){ghost[i].x--;};
+    detectCollision();
   }
 }
 function detectCollision(){
@@ -120,7 +121,6 @@ function gameLoop(){
   displayMap(map);
   displayGhost();
   displayPac();
-  detectCollision();
 }
 function displayPac(){
   document.getElementById('pacman').style.top= pacman.y*20+"px";
